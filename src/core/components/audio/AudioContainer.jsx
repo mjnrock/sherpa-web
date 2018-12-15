@@ -62,16 +62,16 @@ class AudioContainer extends Component {
         return isPaused;
     }
 
-    SeekForward() {
-        let seek = this.state.AudioPlayer.Seek(this.SEEK_AMOUNT);
+    SeekForward(value = null) {
+        let seek = this.state.AudioPlayer.Seek(value === null ? this.SEEK_AMOUNT : value);
         
         this.setState({
             ...this.state,
             Timer: Audio.AudioPlayer.FormatTime(seek)
         });
     }
-    SeekBackward() {
-        let seek = this.state.AudioPlayer.Seek(-this.SEEK_AMOUNT);
+    SeekBackward(value = null) {
+        let seek = this.state.AudioPlayer.Seek(value === null ? -this.SEEK_AMOUNT : value);
         
         this.setState({
             ...this.state,

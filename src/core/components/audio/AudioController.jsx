@@ -23,14 +23,14 @@ class AudioController extends Component {
         });
     }
 
-    SeekForward() {
+    SeekForward(value = null) {
         if(!this.state.IsPaused) {
-            this.props.SeekForward();
+            this.props.SeekForward(value);
         }
     }
-    SeekBackward() {
+    SeekBackward(value = null) {
         if(!this.state.IsPaused) {
-            this.props.SeekBackward();
+            this.props.SeekBackward(value);
         }
     }
 
