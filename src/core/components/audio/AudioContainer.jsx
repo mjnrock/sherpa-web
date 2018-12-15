@@ -10,6 +10,8 @@ class AudioContainer extends Component {
 
         this.state = {};
         this.state.Timer = Audio.AudioPlayer.FormatTime(0);
+        this.state.MaskTimeBegin = null;
+        this.state.MaskTimeEnd = null;
         this.state.Timestamp = 0;
         this.state.Duration = 0;
         this.state.ShowComment = false;
@@ -22,6 +24,14 @@ class AudioContainer extends Component {
                 OnTick: this.OnTick.bind(this),
                 OnEnd: this.OnEnd.bind(this)
             })
+        });
+    }
+
+    UpdateMask(begin, end) {
+        this.setState({
+            ...this.state,
+            MaskTimeBegin: begin,
+            MaskTimeEnd: end
         });
     }
 
@@ -103,7 +113,7 @@ class AudioContainer extends Component {
                     : null
                 }                
 
-                <Audio.AudioWave timer={ this.state.Timer } timestamp={ this.state.Timestamp } duration={ this.state.Duration } ontogglecomment={ () => this.ToggleComment() } />
+                <Audio.AudioWave UpdateMask={ this.UpdateMask.bind(this) } timer={ this.state.Timer } timestamp={ this.state.Timestamp } duration={ this.state.Duration } ontogglecomment={ () => this.ToggleComment() } />
                 <Audio.AudioController ispaused={ this.state.IsPaused } OnResume={ () => this.OnResume() } SeekForward={ () => this.SeekForward() } SeekBackward={ () => this.SeekBackward() } />
                 <Audio.AudioComment showComment={ this.state.ShowComment } ontogglecomment={ () => this.ToggleComment() } />
             </div>

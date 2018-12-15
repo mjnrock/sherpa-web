@@ -78,6 +78,8 @@ class AudioWave extends Component {
             }
             
             this.setState(state);
+
+            this.props.UpdateMask(begin, end);
         } else if(this.state.Mouse.Down.Active && !this.state.Mouse.Up.Active) {
             let width = Math.abs(x - this.state.HoverMask.X),
                 dx = this.state.Mouse.Down.X,
