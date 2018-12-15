@@ -13,6 +13,7 @@ class AudioPlayer {
             Events: events
         };
         this.IsPaused = true;
+        this.HasEnded = false;
 
         this.Howl = new Howl({
             src: [ `app-assets/audio/${ this.Track.File }.mp3` ],
@@ -29,6 +30,7 @@ class AudioPlayer {
                 this.Howl.seek(0);
                 this.IsPaused = true;
                 this.Timer = "0:00:00";
+                this.HasEnded = true;
 
                 this.Track.Events.OnEnd(this);
                 
@@ -65,12 +67,14 @@ class AudioPlayer {
 
     Seek(value) {
         let amount = this.Howl.seek() + value;
+
+        if(amount < 0) {
+            amount = 0;
+        } else if(amount > this.Howl.duration()) {
+            amount = this.Howl.duration();
+        }
+
         if (this.Howl.playing()) {
-            if(amount < 0) {
-                amount = 0;
-            } else if(amount > this.Howl.duration()) {
-                amount = this.Howl.duration();
-            }
             this.Howl.seek(amount);
         }
 
