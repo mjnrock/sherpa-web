@@ -12,11 +12,16 @@ class AudioComment extends Component {
     componentDidMount() {
         this.SimpleMDE = new SimpleMDE({
             element: this.TextArea.current,
+            // status: false,  // Status bar icons            
+            // shortcuts: {
+            //     drawTable: "Cmd-Alt-T"
+            // },
+
             hideIcons: ["guide"],
 
             //? https://github.com/sparksuite/simplemde-markdown-editor
             // showIcons: ["code","table"],
-            
+
             placeholder: "Enter a Comment..."
         });
     }
