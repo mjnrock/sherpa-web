@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import SimpleMDE from "simplemde";
+import "simplemde/dist/simplemde.min.css";
 
 class AudioComment extends Component {
     constructor(props) {
@@ -6,61 +8,33 @@ class AudioComment extends Component {
 
         this.TextArea = React.createRef();
     }
+
+    componentDidMount() {
+        this.SimpleMDE = new SimpleMDE({
+            element: this.TextArea.current,
+            hideIcons: ["guide"],
+
+            //? https://github.com/sparksuite/simplemde-markdown-editor
+            // showIcons: ["code","table"],
+            
+            placeholder: "Enter a Comment..."
+        });
+    }
+
     OnTextAreaChange(e) {
-
+        this.SimpleMDE.value(e.target.value);
     }
-
-    FormatBold(e) {
-        let comment = this.TextArea.current,
-            value = Array.from(comment.value),
-            start = comment.selectionStart,
-            preStart = (start - 2) >= 0 ? (start - 2) : null,
-            end = comment.selectionEnd,
-            postEnd = (end + 1) < value.length ? (end + 1) : null;
-
-        if((preStart !== null  && value[preStart] === "*"  && value[preStart + 1] === "*") && (postEnd !== null && value[postEnd] === "*" && value[postEnd - 1] === "*")) {
-            value.splice(preStart, 2);
-            value.splice(end - 2, 2);
-        } else {
-            value.splice(start, 0, "**");
-            if(end + 1 > value.length) {
-                value.push("**")
-            } else {
-                value.splice(end + 1, 0, "**");
-            }
-        }
-        
-        value = value.join("");
-        this.TextArea.current.value = value;
-    }
-
+    
     render() {
         return (
             <div style={{
                 display: this.props.showComment ? "block" : "none"
             }}>
-                <div className="row mb1">
-                    <div className="col-12">
-                        <div className="btn-group flex" role="group" aria-label="Audio Controller">
-                            <button type="button" className="w-25 btn btn-outline-secondary" onClick={ this.FormatBold.bind(this) }>
-                                <i className="ft-bold"></i>
-                            </button>
-                            <button type="button" className="w-25 btn btn-outline-secondary">
-                                <i className="ft-italic"></i>
-                            </button>
-                            <button type="button" className="w-25 btn btn-outline-secondary">
-                                <i className="ft-underline"></i>
-                            </button>
-                            <button type="button" className="w-25 btn btn-outline-secondary">
-                                <i className="ft-list"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <div className="row mb3">
                     <div className="col-12">
-                        <textarea className="form-control" style={{
+                        <textarea
+                            className="form-control blue"
+                            style={{
                                 resize : "none",
                                 height: "150px"
                             }}

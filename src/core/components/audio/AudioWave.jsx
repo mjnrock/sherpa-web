@@ -186,7 +186,7 @@ class AudioWave extends Component {
                     </div>
 
                     <button
-                        className="btn btn-outline-primary btn-outline-primary-bg-white bottom-right"
+                        className="btn btn-outline-primary-inverted bottom-right"
                         onClick={ () => this.props.ontogglecomment() }
                     >
                         <i className="ft-message-circle"></i>

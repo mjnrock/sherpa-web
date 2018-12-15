@@ -9,12 +9,15 @@
     left: calc(50% - 2px);
 }
 
-.btn-outline-primary-bg-white {
-    background-color: #fff;
-}
-.btn-outline-primary-bg-white:hover {
-    color: #6967ce;
+.btn-outline-primary-inverted {
+    color: #fff;
     border-color: #fff;
+    background-color: #6967ce;
+}
+.btn-outline-primary-inverted:hover {
+    color: #6967ce;
+    border-color: #6967ce;
+    background-color: #fff;
 }
 
 button.btn.disabled {

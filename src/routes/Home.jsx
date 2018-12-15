@@ -10,7 +10,7 @@ class Home extends Component {
 			<div className="container">
 
                 <div className="row">
-                    <div className="col-8 offset-sm-2">                    
+                    <div className="col-12">                    
                         <h1 className="text-center">Sherpa</h1>
 
                         <div className="card">
