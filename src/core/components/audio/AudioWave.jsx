@@ -5,8 +5,8 @@ class AudioWave extends Component {
         super(props);
 
         this.state = {};
-        this.state.MaskTimeBegin = 0;
-        this.state.MaskTimeEnd = 0;
+        this.state.MaskTimeBegin = null;
+        this.state.MaskTimeEnd = null;
         this.state.Mouse = {
             Up: {
                 X: 0,
@@ -128,7 +128,9 @@ class AudioWave extends Component {
             HoverMask: {
                 X: x,
                 Width: 0
-            }
+            },
+            MaskTimeBegin: null,
+            MaskTimeEnd: null
         });
     }
     onMouseUp(e) {
@@ -166,9 +168,14 @@ class AudioWave extends Component {
                             left: this.state.HoverMask.X,
                             width: this.state.HoverMask.Width
                         }}>
-                            <span>{ this.state.MaskTimeBegin }</span>
-                            <br />
-                            <span>{ this.state.MaskTimeEnd }</span>
+                            {
+                                this.state.MaskTimeBegin === null ? null : <div>
+                                    <span>{ this.state.MaskTimeBegin }</span>
+                                    <br />
+                                    <span>{ this.state.MaskTimeEnd }</span>
+                                </div>
+                            }
+                            
                         </div>
                         <div className="bg-white middle remove-pointer" style={{
                             height: "75px",
