@@ -10,6 +10,8 @@ class AudioContainer extends Component {
 
         this.state = {};
         this.state.Timer = Audio.AudioPlayer.FormatTime(0);
+        this.state.Timestamp = 0;
+        this.state.Duration = 0;
         this.state.ShowComment = false;
         this.state.IsPaused = true;
     }
@@ -26,7 +28,9 @@ class AudioContainer extends Component {
     OnTick(player) {
         this.setState({
             ...this.state,
-            Timer: player.Timer
+            Timer: player.Timer,
+            Timestamp: player.Seek(),
+            Duration: player.Duration
         });
     }
 
@@ -99,7 +103,7 @@ class AudioContainer extends Component {
                     : null
                 }                
 
-                <Audio.AudioWave ontogglecomment={ () => this.ToggleComment() } />
+                <Audio.AudioWave timer={ this.state.Timer } timestamp={ this.state.Timestamp } duration={ this.state.Duration } ontogglecomment={ () => this.ToggleComment() } />
                 <Audio.AudioController ispaused={ this.state.IsPaused } OnResume={ () => this.OnResume() } SeekForward={ () => this.SeekForward() } SeekBackward={ () => this.SeekBackward() } />
                 <Audio.AudioComment showComment={ this.state.ShowComment } ontogglecomment={ () => this.ToggleComment() } />
             </div>

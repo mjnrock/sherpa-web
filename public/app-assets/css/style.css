@@ -25,3 +25,11 @@ button.btn.disabled:hover {
     color: inherit !important;
     background-color: inherit !important;
 }
+
+.remove-pointer {
+    pointer-events: none !important;
+}
+.remove-pointer-all,
+.remove-pointer-all * {
+    pointer-events: none !important;
+}

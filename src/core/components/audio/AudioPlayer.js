@@ -66,6 +66,10 @@ class AudioPlayer {
     }
 
     Seek(value) {
+        if(value === null || value === void 0) {
+            return this.Howl.seek();
+        }
+
         let amount = this.Howl.seek() + value;
 
         if(amount < 0) {
