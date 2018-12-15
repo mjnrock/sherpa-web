@@ -1,0 +1,19 @@
+.bottom-right {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+}
+
+.middle {
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 2px);
+}
+
+.btn-outline-primary-bg-white {
+    background-color: #fff;
+}
+.btn-outline-primary-bg-white:hover {
+    color: #6967ce;
+    border-color: #fff;
+}
