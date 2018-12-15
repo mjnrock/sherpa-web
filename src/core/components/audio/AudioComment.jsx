@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 class AudioComment extends Component {
     render() {
         return (
-            <div>
+            <div style={{
+                display: this.props.showComment ? "block" : "none"
+            }}>
                 <div className="row mb1">
                     <div className="col-12">
                         <div className="btn-group flex" role="group" aria-label="Audio Controller">
@@ -47,7 +49,7 @@ class AudioComment extends Component {
                             <button type="button" className="w-50 btn btn-primary">
                                 Submit
                             </button>
-                            <button type="button" className="w-50 btn btn-outline-secondary">
+                            <button type="button" className="w-50 btn btn-outline-secondary" onClick={ () => this.props.ontogglecomment() }>
                                 Cancel
                             </button>
                         </div>

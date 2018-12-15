@@ -15,9 +15,7 @@ class Home extends Component {
 
                         <div className="card">
                             <div className="card-body">
-                                <Components.Audio.AudioWave />
-                                <Components.Audio.AudioController />
-                                <Components.Audio.AudioComment />
+                                <Components.Audio.AudioContainer />
                             </div>
                         </div>
 

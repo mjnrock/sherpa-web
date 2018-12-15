@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 class AudioWave extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+        this.state.timestamp = this.props.timestamp === null || this.props.timestamp === void 0 ? this.props.timestamp : 1568;
+    }
+
     render() {
         return (
             <div className="row mb1">
@@ -14,7 +21,7 @@ class AudioWave extends Component {
                         }}></div>
                     </div>
 
-                    <button className="btn btn-outline-primary btn-outline-primary-bg-white bottom-right">
+                    <button className="btn btn-outline-primary btn-outline-primary-bg-white bottom-right" onClick={ () => this.props.ontogglecomment() }>
                         <i className="ft-message-circle"></i>
                     </button>
                 </div>
