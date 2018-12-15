@@ -2,8 +2,10 @@ import { Howl } from "howler";
 
 class AudioPlayer {
     constructor(file, title, events) {
+        this.ID = null;
+        this.IsFirstPlay = true;
         this.Timestamp = 0;
-        this.Timer = "0:00:00";
+        this.Timer = "00:00:00";
         this.Duration = 0;
         this.Track = {
             File: file,
@@ -15,15 +17,24 @@ class AudioPlayer {
         this.Howl = new Howl({
             src: [ `app-assets/audio/${ this.Track.File }.mp3` ],
             html5: true,
+            preload: true,
+            autoplay: false,
             onplay: function() {
                 this.Timestamp = AudioPlayer.FormatTime(Math.round(this.Howl.duration()));
                 this.Duration = this.Howl.duration();
       
                 requestAnimationFrame(this.Step.bind(this));
+            }.bind(this),
+            onend: function() {
+                this.Howl.seek(0);
+                this.IsPaused = true;
+                this.Timer = "0:00:00";
+
+                this.Track.Events.OnEnd(this);
+                
+                requestAnimationFrame(this.Step.bind(this));
             }.bind(this)
         });
-        this.ID = this.Howl.play();
-        this.Howl.pause();
     }
 
     Step() {
@@ -38,7 +49,12 @@ class AudioPlayer {
     }
     
     Play() {
-        this.Howl.play(this.ID);
+        if(this.IsFirstPlay) {
+            this.ID = this.Howl.play();
+            this.IsFirstPlay = false;
+        } else {
+            this.Howl.play(this.ID);
+        }
         this.IsPaused = false;
     }    
     
@@ -47,10 +63,18 @@ class AudioPlayer {
         this.IsPaused = true;
     }
 
-    Seek(per) {    
+    Seek(value) {
+        let amount = this.Howl.seek() + value;
         if (this.Howl.playing()) {
-            this.Howl.seek(this.Howl.duration() * per);
+            if(amount < 0) {
+                amount = 0;
+            } else if(amount > this.Howl.duration()) {
+                amount = this.Howl.duration();
+            }
+            this.Howl.seek(amount);
         }
+
+        return amount;
     }
 
     static FormatTime(secs) {
@@ -58,7 +82,7 @@ class AudioPlayer {
         let minutes = Math.floor(+secs / 60) || 0;
         let seconds = (+secs - minutes * 60) || 0;
 
-        return (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+        return (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + Math.round(seconds);
     }
 }
 

@@ -8,11 +8,18 @@ class AudioController extends Component {
         this.state.IsPaused = true;
     }
 
-    //  @isPaused should be sent by AudioContainer.OnResume()
-    SetPause(isPaused) {
+    componentWillReceiveProps(props) {
         this.setState({
             ...this.state,
-            IsPaused: isPaused
+            IsPaused: props.ispaused
+        });
+    }
+
+    //  @isPaused should be sent by AudioContainer.OnResume()
+    SetPause() {
+        this.setState({
+            ...this.state,
+            IsPaused: this.props.ispaused
         });
     }
 
@@ -24,17 +31,17 @@ class AudioController extends Component {
                         <button type="button" className="w-20 btn btn-outline-primary">
                             <i className="ft-skip-back"></i>
                         </button>
-                        <button type="button" className="w-20 btn btn-outline-primary">
+                        <button type="button" className="w-20 btn btn-outline-primary" onClick={ () => this.props.SeekBackward() }>
                             <i className="ft-rewind"></i>
                         </button>
-                        <button type="button" className="w-20 btn btn-outline-primary" onClick={ () => this.SetPause(this.props.OnResume()) }>
+                        <button type="button" id="#play" className="w-20 btn btn-outline-primary" onClick={ () => this.SetPause(this.props.OnResume()) }>
                             {
                                 this.state.IsPaused
                                 ? <i className="ft-play"></i>
                                 : <i className="ft-pause"></i>
                             }
                         </button>
-                        <button type="button" className="w-20 btn btn-outline-primary">
+                        <button type="button" className="w-20 btn btn-outline-primary" onClick={ () => this.props.SeekForward() }>
                             <i className="ft-fast-forward"></i>
                         </button>
                         <button type="button" className="w-20 btn btn-outline-primary">

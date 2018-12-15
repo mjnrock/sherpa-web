@@ -6,17 +6,34 @@ class AudioContainer extends Component {
     constructor(props) {
         super(props);
 
+        this.SEEK_AMOUNT = 3;
+
         this.state = {};
+        this.state.Timer = Audio.AudioPlayer.FormatTime(0);
         this.state.ShowComment = false;
         this.state.IsPaused = true;
-        this.state.AudioPlayer = new Audio.AudioPlayer("whistle", "Sound 1", {
-            OnTick: this.OnTick.bind(this)
+    }
+
+    componentDidMount() {        
+        this.setState({
+            AudioPlayer: new Audio.AudioPlayer("whistle", "Sound 1", {
+                OnTick: this.OnTick.bind(this),
+                OnEnd: this.OnEnd.bind(this)
+            })
         });
     }
 
     OnTick(player) {
         this.setState({
             ...this.state,
+            Timer: player.Timer
+        });
+    }
+
+    OnEnd(player) {
+        this.setState({
+            ...this.state,
+            IsPaused: player.IsPaused,
             Timer: player.Timer
         });
     }
@@ -44,6 +61,23 @@ class AudioContainer extends Component {
 
         return isPaused;
     }
+
+    SeekForward() {
+        let seek = this.state.AudioPlayer.Seek(this.SEEK_AMOUNT);
+        
+        this.setState({
+            ...this.state,
+            Timer: Audio.AudioPlayer.FormatTime(seek)
+        });
+    }
+    SeekBackward() {
+        let seek = this.state.AudioPlayer.Seek(-this.SEEK_AMOUNT);
+        
+        this.setState({
+            ...this.state,
+            Timer: Audio.AudioPlayer.FormatTime(seek)
+        });
+    }
     
     ToggleComment() {
         this.setState({
@@ -55,12 +89,18 @@ class AudioContainer extends Component {
     render() {
         return (
             <div>
-                <div className="text-center code">
-                    <span>{ this.state.AudioPlayer.Timer }</span> / <span>{ Audio.AudioPlayer.FormatTime(this.state.AudioPlayer.Duration) }</span>
-                </div>
+                {
+                    this.state.AudioPlayer
+                    ? (
+                        <div className="text-center code">
+                            <span>{ this.state.Timer }</span> / <span>{ Audio.AudioPlayer.FormatTime(this.state.AudioPlayer.Duration) }</span>
+                        </div>
+                    )
+                    : null
+                }                
 
                 <Audio.AudioWave ontogglecomment={ () => this.ToggleComment() } />
-                <Audio.AudioController OnResume={ () => this.OnResume() } />
+                <Audio.AudioController ispaused={ this.state.IsPaused } OnResume={ () => this.OnResume() } SeekForward={ () => this.SeekForward() } SeekBackward={ () => this.SeekBackward() } />
                 <Audio.AudioComment showComment={ this.state.ShowComment } ontogglecomment={ () => this.ToggleComment() } />
             </div>
         );
