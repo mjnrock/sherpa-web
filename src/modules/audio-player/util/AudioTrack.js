@@ -129,12 +129,31 @@ class AudioTrack {
 		console.log(command);
 	}
 
+	static GetTime(secs) {
+        let hours = Math.floor(+secs / 3600) || 0;
+        let minutes = Math.floor(+secs / 60) || 0;
+		let seconds = (+secs - minutes * 60) || 0;
+		
+		return {
+			Hour: hours,
+			Minute: minutes,
+			Second: seconds.toFixed(3),
+
+			H: hours,
+			M: minutes,
+			S: seconds.toFixed(3),
+
+			TotalSeconds: secs
+		};
+    }
     static FormatTime(secs) {
         let hours = Math.floor(+secs / 3600) || 0;
         let minutes = Math.floor(+secs / 60) || 0;
         let seconds = (+secs - minutes * 60) || 0;
 
-        return (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds.toFixed(3);
+		//? Alternative Formattings
+		// return (hours < 10 ? "0" : "") + hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds.toFixed(3);
+        return (hours < 10 ? "0" : "") + hours + "h " + (minutes < 10 ? "0" : "") + minutes + "m " + (seconds < 10 ? "0" : "") + seconds.toFixed(3) + "s";
     }
 }
 

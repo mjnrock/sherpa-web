@@ -38,15 +38,32 @@ class AudioPlayer extends Component {
 	}
 
 	render() {
+		let timer = null;
+		if(this.props.TrackData) {
+			let elapsed = AudioTrack.GetTime(this.props.TrackData.ElapsedTime),
+				duration = AudioTrack.GetTime(this.props.TrackData.Duration),
+				html = (
+					<span>
+						<span>
+							<span>{ elapsed.Hour }<span className="b primary">h</span></span>&nbsp;
+							<span>{ elapsed.Minute }<span className="b primary">m</span></span>&nbsp;
+							<span>{ elapsed.Second }<span className="b primary">s</span></span>
+						</span>
+						&nbsp;/&nbsp;
+						<span>
+							<span>{ duration.Hour }<span className="b primary">h</span></span>&nbsp;
+							<span>{ duration.Minute }<span className="b primary">m</span></span>&nbsp;
+							<span>{ duration.Second }<span className="b primary">s</span></span>
+						</span>
+					</span>
+				);
+
+			timer = html;
+		}
+
 		return (
-			<div>
-				<div className="text-center">
-				{
-					this.props.TrackData
-					? `${ AudioTrack.FormatTime(this.props.TrackData.ElapsedTime) } / ${ AudioTrack.FormatTime(this.props.TrackData.Duration) }`
-					: "00:00:00 / 00:00:00"
-				}
-				</div>
+			<div className="text-center">
+				<Components.Timer />
 				<Components.ControlBar />
 			</div>
 		);
