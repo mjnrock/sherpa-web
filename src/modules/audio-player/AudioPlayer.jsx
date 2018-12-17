@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import AudioTrack from "./util/AudioTrack";
+// import AudioTrack from "./util/AudioTrack";
 import Actions from "./actions/package";
 import Components from "./components/package";
 import EnumPlayState from "./enums/PlayState";
@@ -38,29 +38,6 @@ class AudioPlayer extends Component {
 	}
 
 	render() {
-		let timer = null;
-		if(this.props.TrackData) {
-			let elapsed = AudioTrack.GetTime(this.props.TrackData.ElapsedTime),
-				duration = AudioTrack.GetTime(this.props.TrackData.Duration),
-				html = (
-					<span>
-						<span>
-							<span>{ elapsed.Hour }<span className="b primary">h</span></span>&nbsp;
-							<span>{ elapsed.Minute }<span className="b primary">m</span></span>&nbsp;
-							<span>{ elapsed.Second }<span className="b primary">s</span></span>
-						</span>
-						&nbsp;/&nbsp;
-						<span>
-							<span>{ duration.Hour }<span className="b primary">h</span></span>&nbsp;
-							<span>{ duration.Minute }<span className="b primary">m</span></span>&nbsp;
-							<span>{ duration.Second }<span className="b primary">s</span></span>
-						</span>
-					</span>
-				);
-
-			timer = html;
-		}
-
 		return (
 			<div className="text-center">
 				<Components.Timer />
