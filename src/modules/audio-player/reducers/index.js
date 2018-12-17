@@ -6,9 +6,9 @@ import { OnControlTrack, OnTrackData } from "./ControlTrack";
 //	This defines the state shape
 export default function RootReducer() {
 	return combineReducers({
-		TrackCommand: OnTrackCommand,
-		AudioTrack: OnControlTrack,
-		TrackData: OnTrackData,
-		PlayerMask: OnPlayState
+		XAP_TrackCommand: OnTrackCommand,
+		XAP_AudioTrack: OnControlTrack,
+		XAP_TrackData: OnTrackData,
+		XAP_PlayerMask: OnPlayState
 	});
 }

@@ -38,6 +38,6 @@ class Timer extends Component {
 
 export default connect(
 	(state) => ({
-		TrackData: state.TrackData
+		TrackData: state.XAP_TrackData
 	})
 )(Timer);

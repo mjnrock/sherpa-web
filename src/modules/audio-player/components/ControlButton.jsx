@@ -30,7 +30,7 @@ class ControlButton extends Component {
 
 export default connect(
 	(state) => ({
-		TrackCommand: state.TrackCommand
+		TrackCommand: state.XAP_TrackCommand
 	}),
 	(dispatch) => ({
 		ExecuteCommand: (type) => dispatch(Actions.TrackCommand.ExecuteCommand(type)),

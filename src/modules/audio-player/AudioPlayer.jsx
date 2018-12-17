@@ -61,10 +61,10 @@ class AudioPlayer extends Component {
 
 export default connect(
 	(state) => ({
-		TrackCommand: state.TrackCommand,
-		AudioTrack: state.AudioTrack,
-		TrackData: state.TrackData,
-		PlayerMask: state.PlayerMask
+		TrackCommand: state.XAP_TrackCommand,
+		AudioTrack: state.XAP_AudioTrack,
+		TrackData: state.XAP_TrackData,
+		PlayerMask: state.XAP_PlayerMask
 	}),
 	(dispatch) => ({
 		NewTrack: (filename, hooks) => dispatch(Actions.ControlTrack.NewTrack(filename, hooks)),

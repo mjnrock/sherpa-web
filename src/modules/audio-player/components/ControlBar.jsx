@@ -53,6 +53,6 @@ class ControlBar extends Component {
 
 export default connect(
 	(state) => ({
-		PlayerMask: state.PlayerMask
+		PlayerMask: state.XAP_PlayerMask
 	})
 )(ControlBar);
