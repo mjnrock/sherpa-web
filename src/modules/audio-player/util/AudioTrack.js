@@ -25,6 +25,9 @@ class AudioTrack {
 	OnPlay() {
 		// console.log(...arguments);
 
+		if(typeof this.Hooks.OnPlay === "function") {
+			this.Hooks.OnPlay(this);
+		}
 		requestAnimationFrame(this.Tick.bind(this));
 	}
 	OnPause() {
@@ -44,6 +47,11 @@ class AudioTrack {
 	}
 	OnSeek() {
 		// console.log(...arguments);
+
+		if(typeof this.Hooks.OnSeek === "function") {
+			this.Hooks.OnSeek(this);
+		}
+		requestAnimationFrame(this.Tick.bind(this));
 	}
 
 	GetElapsedTime(isFormatted = false) {
@@ -127,6 +135,20 @@ class AudioTrack {
 	
 	TrackCommandController(command) {
 		console.log(command);
+		switch(command) {
+			case Enum.TrackCommand.SEEK_FORWARD.Name:
+				this.Scrub(AudioTrack.SEEK_DURATION());
+				break;
+			case Enum.TrackCommand.SEEK_BACKWARD.Name:
+				this.Scrub(AudioTrack.SEEK_DURATION(true));
+				break;
+			default:
+				break;
+		}
+	}
+
+	static SEEK_DURATION(invert = false) {
+		return invert ? -3 : 3;
 	}
 
 	static GetTime(secs) {

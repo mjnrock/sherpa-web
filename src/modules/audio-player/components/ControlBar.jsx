@@ -9,7 +9,11 @@ class ControlBar extends Component {
 	render() {
 		return (
 			<div>
-				<div className="btn-group">
+				<div className="btn-group"
+					style={{
+						boxShadow: "rgba(0, 0, 0, 0.2) 2px 2px 6px -2px"
+					}}
+				>
 					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.SKIP_BACKWARD.Name }>
 						<i className={ Enum.TrackCommand.SKIP_BACKWARD.Icon }></i>
 					</ControlButton>
@@ -32,7 +36,12 @@ class ControlBar extends Component {
 						<i className={ Enum.TrackCommand.SKIP_FORWARD.Icon }></i>
 					</ControlButton>
 				</div>
-				<div className="btn-group ml1">				
+				<div
+					className="btn-group ml1"
+					style={{
+						boxShadow: "rgba(0, 0, 0, 0.2) 2px 2px 6px -2px"
+					}}
+				>				
 					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.LOOP.Name }>
 						<i className={ Enum.TrackCommand.LOOP.Icon }></i>
 					</ControlButton>

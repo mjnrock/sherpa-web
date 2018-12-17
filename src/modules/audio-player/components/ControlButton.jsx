@@ -19,6 +19,9 @@ class ControlButton extends Component {
 		return (
 			<button
 				className={ this.props.className ? this.props.className : "btn btn-default btn-block" }
+				style={{
+					boxShadow: "rgba(0,0,0,0.2) 0px 0px 6px -3px inset"
+				}}
 				onClick={ this.OnClick.bind(this) }
 			>{ this.props.children }</button>
 		);

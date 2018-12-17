@@ -10,7 +10,11 @@ class Timer extends Component {
 			let elapsed = AudioTrack.GetTime(this.props.TrackData.ElapsedTime),
 				duration = AudioTrack.GetTime(this.props.TrackData.Duration),
 				html = (
-					<div>
+					<div
+						style={{
+							textShadow: "rgba(0,0,0,0.1) 1px 1px"
+						}}
+					>
 						<span>
 							<span>{ elapsed.Hour }<span className="b primary">h</span></span>&nbsp;
 							<span>{ elapsed.Minute }<span className="b primary">m</span></span>&nbsp;
