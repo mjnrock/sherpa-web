@@ -9,16 +9,14 @@ export function NewTrack(filename, hooks = {}) {
 		}
 	}
 }
-export function UpdateElapsedTime(time) {
+export function UpdateTrackData(payload) {
 	return {
-		type: EnumControlTrackType.UPDATE_ELAPSED_TIME,
-		payload: {
-			Time: time
-		}
+		type: EnumControlTrackType.UPDATE_TRACK_DATA,
+		payload: payload
 	}
 }
 
 export default {
 	NewTrack,
-	UpdateElapsedTime
+	UpdateTrackData
 }

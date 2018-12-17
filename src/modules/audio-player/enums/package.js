@@ -1,7 +1,7 @@
-import PlayState from "./PlayState";
+import TrackCommand from "./TrackCommand";
 import ControlTrackType from "./ControlTrackType";
 
 export default {
-	PlayState,
+	TrackCommand,
 	ControlTrackType
 };

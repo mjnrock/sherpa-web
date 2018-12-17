@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
+import { OnTrackCommand } from "./TrackCommand";
 import { OnPlayState } from "./PlayState";
 import { OnControlTrack, OnTrackData } from "./ControlTrack";
 
 //	This defines the state shape
 export default function RootReducer() {
 	return combineReducers({
-		PlayState: OnPlayState,
+		TrackCommand: OnTrackCommand,
 		AudioTrack: OnControlTrack,
-		TrackData: OnTrackData
+		TrackData: OnTrackData,
+		IsPlaying: OnPlayState
 	});
 }

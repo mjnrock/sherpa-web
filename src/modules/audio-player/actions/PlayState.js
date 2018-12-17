@@ -1,9 +1,10 @@
-export function ExecuteCommand(type) {
+export function PlayState(value) {
 	return {
-		type: type
+		type: "PLAY_PAUSE",
+		value: value
 	}
 }
 
 export default {
-	ExecuteCommand
+	PlayState
 }

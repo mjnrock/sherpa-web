@@ -10,10 +10,10 @@ export function OnControlTrack(state = null, action) {
 }
 
 export function OnTrackData(state = null, action) {
-	if(action.type === EnumControlTrackType.UPDATE_ELAPSED_TIME) {
+	if(action.type === EnumControlTrackType.UPDATE_TRACK_DATA) {
 		return {
 			...state,
-			ElapsedTime: action.payload.Time
+			...action.payload
 		}
 	}
 

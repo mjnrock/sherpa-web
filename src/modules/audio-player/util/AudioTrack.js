@@ -1,6 +1,6 @@
 import { Howl } from "howler";
 
-import EnumPlayState from "./../enums/PlayState";
+import EnumTrackCommand from "./../enums/TrackCommand";
 
 class AudioTrack {
 	constructor(filename, hooks = {}) {
@@ -23,6 +23,7 @@ class AudioTrack {
 
 	OnPlay() {
 		console.log(...arguments);
+
 		requestAnimationFrame(this.Tick.bind(this));
 	}
 	OnPause() {
@@ -30,7 +31,12 @@ class AudioTrack {
 	}
 	OnEnd() {
 		console.log(...arguments);
+
 		this.Howl.seek(0);
+		if(typeof this.Hooks.OnEnd === "function") {
+			this.Hooks.OnEnd(this);
+		}
+		requestAnimationFrame(this.Tick.bind(this));
 	}
 	OnRate() {
 		console.log(...arguments);
@@ -54,6 +60,14 @@ class AudioTrack {
 		}
 
 		return ((seek / this.Howl.duration()) * 100) || 0;
+	}
+	GetDuration(isFormatted = false) {
+        let duration = this.Howl.duration() || 0;
+		if(isFormatted) {
+			return AudioTrack.FormatTime(duration);
+		}
+
+		return duration;
 	}
 
     Tick() {
@@ -103,18 +117,19 @@ class AudioTrack {
 	
 
 	
-	ChangePlayState(playState) {
-		switch(playState) {
-			case EnumPlayState.PLAY.Type:
+	ChangeTrackCommand(command) {
+		console.log(command);
+		switch(command) {
+			case EnumTrackCommand.PLAY.Name:
 				this.Play();
 				return true;
-			case EnumPlayState.PAUSE.Type:
+			case EnumTrackCommand.PAUSE.Name:
 				this.Pause();
 				return true;
-			case EnumPlayState.SEEK_FORWARD.Type:
+			case EnumTrackCommand.SEEK_FORWARD.Name:
 				// this.Pause();
 				return true;
-			case EnumPlayState.SEEK_BACKWARD.Type:
+			case EnumTrackCommand.SEEK_BACKWARD.Name:
 				// this.Pause();
 				return true;
 			default:
