@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import Components from "./../core/components/package.js";
+import Components from "../core/components/package.js";
 
-class Home extends Component {
+class V1 extends Component {
 	render() {
 		//? Here to remind about the "Router" object and its data
 		// console.log(this.props);
@@ -15,7 +15,7 @@ class Home extends Component {
 
                         <div className="card">
                             <div className="card-body">
-                                <Components.Audio.AudioContainer />
+                                <Components.Audio.V1.AudioContainer />
                             </div>
                         </div>
 
@@ -37,4 +37,4 @@ class Home extends Component {
 	}
 }
 
-export { Home };
+export { V1 };

@@ -1,5 +1,7 @@
-import { Home } from "./Home.jsx";
+import { AudioPlayer } from "./AudioPlayer";
+import { V1 } from "./V1";
 
 export default {
-    Home
+	AudioPlayer,
+	V1
 };

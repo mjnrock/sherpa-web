@@ -20,7 +20,7 @@ class AudioContainer extends Component {
 
     componentDidMount() {        
         this.setState({
-            AudioPlayer: new Audio.AudioPlayer("whistle", "Sound 1", {
+            AudioPlayer: new Audio.AudioPlayer("synth", "Sound 1", {
                 OnTick: this.OnTick.bind(this),
                 OnEnd: this.OnEnd.bind(this)
             })

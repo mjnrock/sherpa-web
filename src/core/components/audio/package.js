@@ -1,14 +1,7 @@
-import { AudioPlayer } from "./AudioPlayer.js";
-
-import { AudioController } from "./AudioController.jsx";
-import { AudioComment } from "./AudioComment.jsx";
-import { AudioWave } from "./AudioWave.jsx";
-import { AudioContainer } from "./AudioContainer.jsx";
+import V1 from "./v1/package";
+import V2 from "./v2/package";
 
 export default {
-    AudioPlayer,
-    AudioController,
-    AudioComment,
-    AudioWave,
-    AudioContainer
+	V1,
+	V2
 };

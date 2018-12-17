@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Routes from "./routes/package";
 
@@ -8,11 +9,12 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route path="/" component={ (router) => <Routes.Home Router={ router } /> } />
+					<Route path="/audio" component={ (router) => <Routes.AudioPlayer Router={ router } /> } />
+					<Route path="/v1" component={ (router) => <Routes.V1 Router={ router } /> } />
 				</Switch>
 			</BrowserRouter>
 		);
 	}
 }
 
-export default App;
+export default connect()(App);
