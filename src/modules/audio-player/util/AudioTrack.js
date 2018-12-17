@@ -1,6 +1,7 @@
 import { Howl } from "howler";
 
-import EnumTrackCommand from "./../enums/TrackCommand";
+import Bitwise from "./Bitwise";
+import Enum from "./../enums/package";
 
 class AudioTrack {
 	constructor(filename, hooks = {}) {
@@ -22,15 +23,15 @@ class AudioTrack {
 	}
 
 	OnPlay() {
-		console.log(...arguments);
+		// console.log(...arguments);
 
 		requestAnimationFrame(this.Tick.bind(this));
 	}
 	OnPause() {
-		console.log(...arguments);
+		// console.log(...arguments);
 	}
 	OnEnd() {
-		console.log(...arguments);
+		// console.log(...arguments);
 
 		this.Howl.seek(0);
 		if(typeof this.Hooks.OnEnd === "function") {
@@ -39,10 +40,10 @@ class AudioTrack {
 		requestAnimationFrame(this.Tick.bind(this));
 	}
 	OnRate() {
-		console.log(...arguments);
+		// console.log(...arguments);
 	}
 	OnSeek() {
-		console.log(...arguments);
+		// console.log(...arguments);
 	}
 
 	GetElapsedTime(isFormatted = false) {
@@ -116,25 +117,16 @@ class AudioTrack {
 	}
 	
 
-	
-	ChangeTrackCommand(command) {
-		console.log(command);
-		switch(command) {
-			case EnumTrackCommand.PLAY.Name:
-				this.Play();
-				return true;
-			case EnumTrackCommand.PAUSE.Name:
-				this.Pause();
-				return true;
-			case EnumTrackCommand.SEEK_FORWARD.Name:
-				// this.Pause();
-				return true;
-			case EnumTrackCommand.SEEK_BACKWARD.Name:
-				// this.Pause();
-				return true;
-			default:
-				return false;
+	PlayerMaskController(mask) {
+		if(Bitwise.Has(mask, Enum.PlayState.PLAY.Flag)) {
+			this.Play();
+		} else {
+			this.Pause();
 		}
+	}
+	
+	TrackCommandController(command) {
+		console.log(command);
 	}
 
     static FormatTime(secs) {

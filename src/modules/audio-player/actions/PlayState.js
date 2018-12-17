@@ -1,6 +1,6 @@
-export function PlayState(value) {
+export function PlayState(type, value) {
 	return {
-		type: "PLAY_PAUSE",
+		type: type,
 		value: value
 	}
 }

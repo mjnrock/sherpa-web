@@ -3,7 +3,7 @@
 const PlayState = {
 	PLAY: {
 		Name: "PLAY",
-		State: 1 << 0,
+		Flag: 1 << 0,
 		Icon: {
 			On: "ft-play",
 			Off: "ft-pause"
@@ -11,7 +11,7 @@ const PlayState = {
 	},	
 	LOOP: {
 		Name: "LOOP",
-		State: 1 << 1,
+		Flag: 1 << 1,
 		Icon: {
 			On: "ft-repeat",
 			Off: "ft-repeat"

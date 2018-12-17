@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import EnumTrackCommand from "./../enums/TrackCommand";
+import Bitwise from "./../util/Bitwise";
+import Enum from "./../enums/package";
 import ControlButton from "./ControlButton";
 
 class ControlBar extends Component {
@@ -9,31 +10,31 @@ class ControlBar extends Component {
 		return (
 			<div>
 				<div className="btn-group">
-					<ControlButton className="btn btn-outline-primary" command={ EnumTrackCommand.SKIP_BACKWARD.Name }>
-						<i className={ EnumTrackCommand.SKIP_BACKWARD.Icon }></i>
+					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.SKIP_BACKWARD.Name }>
+						<i className={ Enum.TrackCommand.SKIP_BACKWARD.Icon }></i>
 					</ControlButton>
-					<ControlButton className="btn btn-outline-primary" command={ EnumTrackCommand.SEEK_BACKWARD.Name }>
-						<i className={ EnumTrackCommand.SEEK_BACKWARD.Icon }></i>
+					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.SEEK_BACKWARD.Name }>
+						<i className={ Enum.TrackCommand.SEEK_BACKWARD.Icon }></i>
 					</ControlButton>
 					{
-						this.props.IsPlaying === true
-						? <ControlButton className="btn btn-outline-primary" command={ EnumTrackCommand.PAUSE.Name }>
-							<i className={ EnumTrackCommand.PAUSE.Icon }></i>
+						Bitwise.Has(this.props.PlayerMask, Enum.PlayState.PLAY.Flag)
+						? <ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.PAUSE.Name }>
+							<i className={ Enum.TrackCommand.PAUSE.Icon }></i>
 						</ControlButton>
-						: <ControlButton className="btn btn-outline-primary" command={ EnumTrackCommand.PLAY.Name }>
-							<i className={ EnumTrackCommand.PLAY.Icon }></i>
+						: <ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.PLAY.Name }>
+							<i className={ Enum.TrackCommand.PLAY.Icon }></i>
 						</ControlButton>
 					}
-					<ControlButton className="btn btn-outline-primary" command={ EnumTrackCommand.SEEK_FORWARD.Name }>
-						<i className={ EnumTrackCommand.SEEK_FORWARD.Icon }></i>
+					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.SEEK_FORWARD.Name }>
+						<i className={ Enum.TrackCommand.SEEK_FORWARD.Icon }></i>
 					</ControlButton>
-					<ControlButton className="btn btn-outline-primary" command={ EnumTrackCommand.SKIP_FORWARD.Name }>
-						<i className={ EnumTrackCommand.SKIP_FORWARD.Icon }></i>
+					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.SKIP_FORWARD.Name }>
+						<i className={ Enum.TrackCommand.SKIP_FORWARD.Icon }></i>
 					</ControlButton>
 				</div>
 				<div className="btn-group ml1">				
-					<ControlButton className="btn btn-outline-primary" command={ EnumTrackCommand.LOOP.Name }>
-						<i className={ EnumTrackCommand.LOOP.Icon }></i>
+					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.LOOP.Name }>
+						<i className={ Enum.TrackCommand.LOOP.Icon }></i>
 					</ControlButton>
 				</div>
 			</div>
@@ -43,6 +44,6 @@ class ControlBar extends Component {
 
 export default connect(
 	(state) => ({
-		IsPlaying: state.IsPlaying
+		PlayerMask: state.PlayerMask
 	})
 )(ControlBar);

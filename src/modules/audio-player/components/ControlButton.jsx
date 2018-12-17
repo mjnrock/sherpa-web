@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Actions from "./../actions/package";
-import EnumTrackCommand from "./../enums/TrackCommand";
+import Enum from "./../enums/package";
 
 class ControlButton extends Component {
 	OnClick(e) {
 		this.props.ExecuteCommand(this.props.command);
 
-		if(this.props.command === EnumTrackCommand.PLAY.Name) {
-			this.props.PlayState(true);
-		}
-		if(this.props.command === EnumTrackCommand.PAUSE.Name) {
-			this.props.PlayState(false);
+		if(this.props.command === Enum.TrackCommand.PLAY.Name) {
+			this.props.PlayState(Enum.PlayState.PLAY.Name, Enum.PlayState.PLAY.Flag);
+		} else if(this.props.command === Enum.TrackCommand.PAUSE.Name) {
+			this.props.PlayState(Enum.PlayState.PLAY.Name, ~Enum.PlayState.PLAY.Flag);
 		}
 	}
 
@@ -32,6 +31,6 @@ export default connect(
 	}),
 	(dispatch) => ({
 		ExecuteCommand: (type) => dispatch(Actions.TrackCommand.ExecuteCommand(type)),
-		PlayState: (value) => dispatch(Actions.PlayState.PlayState(value))
+		PlayState: (type, value) => dispatch(Actions.PlayState.PlayState(type, value))
 	})
 )(ControlButton);

@@ -9,6 +9,6 @@ export default function RootReducer() {
 		TrackCommand: OnTrackCommand,
 		AudioTrack: OnControlTrack,
 		TrackData: OnTrackData,
-		IsPlaying: OnPlayState
+		PlayerMask: OnPlayState
 	});
 }

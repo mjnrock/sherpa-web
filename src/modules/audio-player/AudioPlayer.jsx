@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import AudioTrack from "./util/AudioTrack";
 import Actions from "./actions/package";
 import Components from "./components/package";
+import EnumPlayState from "./enums/PlayState";
 
 class AudioPlayer extends Component {
 	componentDidMount() {
@@ -13,9 +14,12 @@ class AudioPlayer extends Component {
 		});
 	}
 
-	componentWillReceiveProps(nextProps, nextContext) {
+	componentWillReceiveProps(nextProps) {
+		if(this.props.PlayerMask !== nextProps.PlayerMask) {
+			this.props.AudioTrack.PlayerMaskController(nextProps.PlayerMask);
+		}
 		if(this.props.TrackCommand !== nextProps.TrackCommand) {
-			this.props.AudioTrack.ChangeTrackCommand(nextProps.TrackCommand);
+			this.props.AudioTrack.TrackCommandController(nextProps.TrackCommand);
 		}
 	}
 
@@ -30,7 +34,7 @@ class AudioPlayer extends Component {
 			Duration: track.GetDuration(),
 			ElapsedTime: 0
 		});
-		this.props.PlayState(false);
+		this.props.PlayState(EnumPlayState.PLAY.Name, ~EnumPlayState.PLAY.Flag);
 	}
 
 	render() {
@@ -53,11 +57,12 @@ export default connect(
 	(state) => ({
 		TrackCommand: state.TrackCommand,
 		AudioTrack: state.AudioTrack,
-		TrackData: state.TrackData
+		TrackData: state.TrackData,
+		PlayerMask: state.PlayerMask
 	}),
 	(dispatch) => ({
 		NewTrack: (filename, hooks) => dispatch(Actions.ControlTrack.NewTrack(filename, hooks)),
 		UpdateTrackData: (time) => dispatch(Actions.ControlTrack.UpdateTrackData(time)),
-		PlayState: (value) => dispatch(Actions.PlayState.PlayState(value))
+		PlayState: (type, value) => dispatch(Actions.PlayState.PlayState(type, value))
 	})
 )(AudioPlayer);
