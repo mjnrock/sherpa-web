@@ -68,7 +68,6 @@ class AudioTrack {
 
 
     Play() {
-		console.log(11111);
         if(this.AudioID === null || this.AudioID === void 0) {
             this.AudioID = this.Howl.play();
         } else {
