@@ -40,6 +40,7 @@ class AudioPlayer extends Component {
 	render() {
 		return (
 			<div className="text-center">
+				<h2>Sherpa</h2>
 				<Components.Timer />
 				<Components.ControlBar />
 			</div>
