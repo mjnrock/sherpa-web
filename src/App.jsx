@@ -9,7 +9,7 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<Switch>
-					<Route path="/audio" component={ (router) => <Routes.AudioPlayer Router={ router } /> } />
+					<Route path="/podcast" component={ (router) => <Routes.Podcast Router={ router } /> } />
 					<Route path="/v1" component={ (router) => <Routes.V1 Router={ router } /> } />
 				</Switch>
 			</BrowserRouter>

@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import SimpleMDE from "simplemde";
 import "simplemde/dist/simplemde.min.css";
 
-import Actions from "./../actions/package";
+class MarkdownField extends Component {
+	constructor(props) {
+		super(props);
 
-class InputComment extends Component {
+		this.TextArea = React.createRef();
+	}
+
     componentDidMount() {
         this.SimpleMDE = new SimpleMDE({
-			element: document.getElementById("audioComment"),
+			element: this.TextArea.current,
 			autosave: {
 				enabled: true,
 				uniqueId: "audioComment",
@@ -62,7 +65,13 @@ class InputComment extends Component {
 				"side-by-side",
 				"fullscreen",
 				"|",
-				"guide"
+				"guide",
+				{
+					name: "custom",
+					action: (editor) => console.log(editor),
+					className: "fa fa-star",
+					title: "Custom Button"
+				}
 			],
 
             placeholder: "Enter a Comment..."
@@ -72,7 +81,9 @@ class InputComment extends Component {
 	}
 	
     OnTextAreaChange(e) {
-		this.props.SendCommentValue(this.SimpleMDE.value());
+		if(this.props.SaveValue) {
+			this.props.SaveValue(this.SimpleMDE.value());
+		}
 	}
 	
 	render() {
@@ -80,23 +91,16 @@ class InputComment extends Component {
 			<textarea
 				className="form-control primary"
 				placeholder="Enter a comment..."
-				id="audioComment"
 				style={{
 					resize: "none",
 					height: "100px",
 					boxShadow: "rgba(0, 0, 0, 0.2) 2px 2px 6px -2px"
 				}}
 				onChange={ this.OnTextAreaChange.bind(this) }
+				ref={ this.TextArea }
 			></textarea>
 		);
 	}
 }
 
-export default connect(
-	(state) => ({
-		CommentValue: state.XXC_CommentValue
-	}),
-	(dispatch) => ({
-		SendCommentValue: (value) => dispatch(Actions.CommentValue.CommentValue(value))
-	})
-)(InputComment);
+export default MarkdownField;

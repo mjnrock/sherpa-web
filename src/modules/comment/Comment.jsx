@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Components from "./components/package";
+import MarkdownField from "./../form/MarkdownField";
+
+import Actions from "./actions/package";
 
 class Comment extends Component {
 	render() {
 		return (
 			<div className="col-6 offset-sm-3">
 				<Components.AudioTimer />
-				<Components.InputComment />
+
+				<MarkdownField SaveValue={ this.props.SendCommentValue }/>
 
 				<div className="col-12 mb3 mt3">
 					<div
@@ -28,4 +32,9 @@ class Comment extends Component {
 	}
 }
 
-export default connect()(Comment);
+export default connect(
+	null,
+	(dispatch) => ({
+		SendCommentValue: (value) => dispatch(Actions.CommentValue.CommentValue(value))
+	})
+)(Comment);

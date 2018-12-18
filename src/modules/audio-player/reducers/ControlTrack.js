@@ -19,3 +19,8 @@ export function OnTrackData(state = null, action) {
 
 	return state;
 }
+
+export default {
+	OnControlTrack,
+	OnTrackData
+}

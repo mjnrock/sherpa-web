@@ -8,3 +8,7 @@ export function OnCommentValue(state = null, action) {
 
 	return state;
 }
+
+export default {
+	OnCommentValue
+}

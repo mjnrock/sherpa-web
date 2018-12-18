@@ -1,7 +1,7 @@
-import { AudioPlayer } from "./AudioPlayer";
+import { Podcast } from "./Podcast";
 import { V1 } from "./V1";
 
 export default {
-	AudioPlayer,
+	Podcast,
 	V1
 };

@@ -7,3 +7,7 @@ export function OnTrackCommand(state = null, action) {
 
 	return state;
 }
+
+export default {
+	OnTrackCommand
+}
