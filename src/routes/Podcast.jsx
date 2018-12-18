@@ -7,7 +7,7 @@ class Podcast extends Component {
 		return (			
 			<div className="container">
                 <div className="row">
-                    <div className="col-12">                    
+                    <div className="col-12">						
                         <Modules.AudioPlayer.AudioPlayer Title="Track Title" Filename="synth" />
                         <Modules.Comment.Comment />
                     </div>

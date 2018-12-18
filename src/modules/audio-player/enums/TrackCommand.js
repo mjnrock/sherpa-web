@@ -41,6 +41,6 @@ const TrackCommands = {
 
 export default Object.freeze({
 	...TrackCommands,
-
-	Enum: Object.keys(TrackCommands)
+	
+	Enum: Object.entries(TrackCommands).map(v => v[1].Name)
 });

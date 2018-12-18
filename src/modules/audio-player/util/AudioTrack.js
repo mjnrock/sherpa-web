@@ -117,9 +117,7 @@ class AudioTrack {
             amount = this.Howl.duration();
         }
 
-        if (this.Howl.playing()) {
-            this.Howl.seek(amount);
-        }
+		this.Howl.seek(amount);
 
         return amount;
 	}

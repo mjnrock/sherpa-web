@@ -26,6 +26,7 @@ class AudioPlayer extends Component {
 
 	OnSeek(track) {
 		this.props.ExecuteCommand(Enum.TrackCommand.PLAY.Name);
+		this.OnTick(track);
 	}
 	OnTick(track) {
 		this.props.UpdateTrackData({
