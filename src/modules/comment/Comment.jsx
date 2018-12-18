@@ -6,7 +6,7 @@ import Components from "./components/package";
 class Comment extends Component {
 	render() {
 		return (
-			<div className="text-center col-6 offset-sm-3">
+			<div className="col-6 offset-sm-3">
 				<Components.AudioTimer />
 				<Components.InputComment />
 

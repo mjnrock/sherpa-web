@@ -1,9 +1,5 @@
-import TrackCommand from "./TrackCommand";
-import ControlTrackType from "./ControlTrackType";
-import PlayState from "./PlayState";
+import CommentValue from "./CommentValue";
 
 export default {
-	TrackCommand,
-	ControlTrackType,
-	PlayState
+	CommentValue
 };

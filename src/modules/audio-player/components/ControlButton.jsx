@@ -18,9 +18,17 @@ class ControlButton extends Component {
 	render() {
 		return (
 			<button
-				className={ this.props.className ? this.props.className : "btn btn-default btn-block" }
+				className={
+					`primary mr2 ${ 
+						this.props.command === Enum.TrackCommand.PLAY.Name || this.props.command === Enum.TrackCommand.PAUSE.Name ? "b" : ""
+					}`
+				}
 				style={{
-					boxShadow: "rgba(0,0,0,0.2) 0px 0px 6px -3px inset"
+					border: "none",
+					backgroundColor: "transparent",
+					cursor: "pointer",
+					outline: "none",
+					fontSize: this.props.command === Enum.TrackCommand.PLAY.Name || this.props.command === Enum.TrackCommand.PAUSE.Name ? "40px" : "32px"
 				}}
 				onClick={ this.OnClick.bind(this) }
 			>{ this.props.children }</button>

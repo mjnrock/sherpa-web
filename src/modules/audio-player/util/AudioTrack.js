@@ -134,7 +134,6 @@ class AudioTrack {
 	}
 	
 	TrackCommandController(command) {
-		console.log(command);
 		switch(command) {
 			case Enum.TrackCommand.SEEK_FORWARD.Name:
 				this.Scrub(AudioTrack.SEEK_DURATION());

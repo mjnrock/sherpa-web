@@ -2,7 +2,7 @@
 //! The consequence of which is that intended opposites must be accounted for
 const PlayState = {
 	PLAY: {
-		Name: "PLAY",
+		Name: "XAC_PLAY",
 		Flag: 1 << 0,
 		Icon: {
 			On: "ft-play",
@@ -10,7 +10,7 @@ const PlayState = {
 		}
 	},	
 	LOOP: {
-		Name: "LOOP",
+		Name: "XAC_LOOP",
 		Flag: 1 << 1,
 		Icon: {
 			On: "ft-repeat",

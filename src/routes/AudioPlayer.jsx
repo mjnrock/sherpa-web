@@ -9,7 +9,7 @@ class AudioPlayer extends Component {
 			<div className="container">
                 <div className="row">
                     <div className="col-12">                    
-                        <ModuleAudioPlayer />
+                        <ModuleAudioPlayer Title="Track Title" Filename="synth" />
                         <ModuleComment />
                     </div>
                 </div>

@@ -1,4 +1,4 @@
 export default Object.freeze({
-	NEW: "NEW",
-	UPDATE_TRACK_DATA: "UPDATE_TRACK_DATA"
+	NEW: "XAC_NEW",
+	UPDATE_TRACK_DATA: "XAC_UPDATE_TRACK_DATA"
 });

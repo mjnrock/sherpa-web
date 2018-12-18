@@ -8,7 +8,7 @@ import Enum from "./enums/package";
 
 class AudioPlayer extends Component {
 	componentDidMount() {
-		this.props.NewTrack("synth", {
+		this.props.NewTrack(this.props.Filename, {
 			OnTick: (t) => this.OnTick(t),
 			OnEnd: (t) => this.OnEnd(t),
 			OnSeek: (t) => this.OnSeek(t)
@@ -48,7 +48,7 @@ class AudioPlayer extends Component {
 					style={{
 						textShadow: "rgba(0,0,0,0.1) 2px 1px"
 					}}
-				>Sherpa</h2>
+				>{ this.props.Title || "Sherpa"}</h2>
 				<Components.Timer />
 				<Components.TimerBar />
 				<Components.ControlBar />
