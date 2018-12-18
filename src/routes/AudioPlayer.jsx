@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import ModuleAudioPlayer from "./../modules/audio-player/AudioPlayer";
+import ModuleComment from "./../modules/comment/Comment";
 
 class AudioPlayer extends Component {
 	render() {
@@ -9,6 +10,7 @@ class AudioPlayer extends Component {
                 <div className="row">
                     <div className="col-12">                    
                         <ModuleAudioPlayer />
+                        <ModuleComment />
                     </div>
                 </div>
 			</div>

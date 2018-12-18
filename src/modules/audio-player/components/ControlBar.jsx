@@ -37,7 +37,7 @@ class ControlBar extends Component {
 					</ControlButton>
 				</div>
 				<div
-					className="btn-group ml1"
+					className="btn-group pull-right"
 					style={{
 						boxShadow: "rgba(0, 0, 0, 0.2) 2px 2px 6px -2px"
 					}}

@@ -11,7 +11,7 @@ class AudioPlayer extends Component {
 		this.props.NewTrack("synth", {
 			OnTick: (t) => this.OnTick(t),
 			OnEnd: (t) => this.OnEnd(t),
-			OnSeek: (t) => this.OnTick(t)	// Not a typo, just being lazy
+			OnSeek: (t) => this.OnSeek(t)
 		});
 	}
 
@@ -19,16 +19,14 @@ class AudioPlayer extends Component {
 		if(this.props.PlayerMask !== nextProps.PlayerMask) {
 			this.props.AudioTrack.PlayerMaskController(nextProps.PlayerMask);
 		}
-
-		//TODO Currently this prevents pressing the same button multiple times in a row
-			//!	This doesn't work:	if(this.props.AudioTrack && ![Enum.TrackCommand.PLAY.Name, Enum.TrackCommand.PAUSE.Name].includes(nextProps.TrackCommand)) {
-			//	It calls the action like 10 times in a row and exhausts the track duration
-		//TODO You could maybe just count the amount of clicks each button has into the state and use that as a guide?
 		if(this.props.TrackCommand !== nextProps.TrackCommand) {
 			this.props.AudioTrack.TrackCommandController(nextProps.TrackCommand);
 		}
 	}
 
+	OnSeek(track) {
+		this.props.ExecuteCommand(Enum.TrackCommand.PLAY.Name);
+	}
 	OnTick(track) {
 		this.props.UpdateTrackData({
 			Duration: track.GetDuration(),
@@ -67,6 +65,7 @@ export default connect(
 		PlayerMask: state.XAP_PlayerMask
 	}),
 	(dispatch) => ({
+		ExecuteCommand: (type) => dispatch(Actions.TrackCommand.ExecuteCommand(type)),
 		NewTrack: (filename, hooks) => dispatch(Actions.ControlTrack.NewTrack(filename, hooks)),
 		UpdateTrackData: (time) => dispatch(Actions.ControlTrack.UpdateTrackData(time)),
 		PlayState: (type, value) => dispatch(Actions.PlayState.PlayState(type, value))
