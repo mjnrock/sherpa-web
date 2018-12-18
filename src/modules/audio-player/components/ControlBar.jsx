@@ -8,8 +8,8 @@ import ControlButton from "./ControlButton";
 class ControlBar extends Component {
 	render() {
 		return (
-			<div>
-				<div className="flex items-center justify-center">
+			<div className="flex items-center justify-center">
+				<div className="flex items-center justify-about">
 					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.SKIP_BACKWARD.Name }>
 						<i className={ Enum.TrackCommand.SKIP_BACKWARD.Icon }></i>
 					</ControlButton>
@@ -30,14 +30,6 @@ class ControlBar extends Component {
 					</ControlButton>
 					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.SKIP_FORWARD.Name }>
 						<i className={ Enum.TrackCommand.SKIP_FORWARD.Icon }></i>
-					</ControlButton>
-				</div>
-				<div className="flex items-center justify-between">
-					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.LOOP.Name }>
-						<i className={ Enum.TrackCommand.LOOP.Icon }></i>
-					</ControlButton>		
-					<ControlButton className="btn btn-outline-primary" command={ Enum.TrackCommand.CHAT.Name }>
-						<i className={ Enum.TrackCommand.CHAT.Icon }></i>
 					</ControlButton>
 				</div>
 			</div>

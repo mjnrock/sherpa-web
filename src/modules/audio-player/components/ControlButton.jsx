@@ -19,7 +19,7 @@ class ControlButton extends Component {
 		return (
 			<button
 				className={
-					`primary mr2 ${ 
+					`primary ${ 
 						this.props.command === Enum.TrackCommand.PLAY.Name || this.props.command === Enum.TrackCommand.PAUSE.Name ? "b" : ""
 					}`
 				}

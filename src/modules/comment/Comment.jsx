@@ -7,12 +7,12 @@ import MarkdownField from "./../form/MarkdownField";
 import Actions from "./actions/package";
 
 class Comment extends Component {
+
 	render() {
 		return (
-			<div className="col-6 offset-sm-3">
+			<div>
 				<Components.AudioTimer />
-
-				<MarkdownField SaveValue={ this.props.SendCommentValue }/>
+				<MarkdownField SaveValue={ this.props.SendCommentValue } TrackData={ this.props.TrackData }/>
 
 				<div className="col-12 mb3 mt3">
 					<div
@@ -24,7 +24,11 @@ class Comment extends Component {
 						}}
 					>
 						<button type="button" className="w-50 btn btn-primary">Submit</button>
-						<button type="button" className="w-50 btn btn-outline-secondary">Cancel</button>
+						<button
+							type="button"
+							className="w-50 btn btn-outline-secondary"
+							onClick={ () => this.props.OnToggleCommentVisibility(false) }
+						>Cancel</button>
 					</div>
 				</div>
 			</div>
@@ -33,8 +37,11 @@ class Comment extends Component {
 }
 
 export default connect(
-	null,
+	(state) => ({
+		TrackData: state.XAP_TrackData
+	}),
 	(dispatch) => ({
-		SendCommentValue: (value) => dispatch(Actions.CommentValue.CommentValue(value))
+		SendCommentValue: (value) => dispatch(Actions.CommentValue.CommentValue(value)),
+		OnToggleCommentVisibility: (value) => dispatch(Actions.CommentVisibility.CommentVisibility(value))
 	})
 )(Comment);

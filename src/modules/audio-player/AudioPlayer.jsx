@@ -44,7 +44,7 @@ class AudioPlayer extends Component {
 
 	render() {
 		return (
-			<div className="text-center col-6 offset-sm-3">
+			<div className="text-center">
 				<h2
 					style={{
 						textShadow: "rgba(0,0,0,0.1) 2px 1px"

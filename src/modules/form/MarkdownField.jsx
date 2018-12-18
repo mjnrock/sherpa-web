@@ -67,10 +67,24 @@ class MarkdownField extends Component {
 				"|",
 				"guide",
 				{
-					name: "custom",
+					name: "current-time",
+					action: (editor) => {
+						editor.codemirror.doc.replaceSelection(`${ this.props.TrackData.ElapsedTime.toFixed(3) }`);
+					},
+					className: "ft-clock",
+					title: "Current Timestamp"
+				},
+				{
+					name: "mask-start",
 					action: (editor) => console.log(editor),
-					className: "fa fa-star",
-					title: "Custom Button"
+					className: "fa fa-hourglass-start",
+					title: "Selection Time Start"
+				},
+				{
+					name: "mask-end",
+					action: (editor) => console.log(editor),
+					className: "fa fa-hourglass-end",
+					title: "Selection Time End"
 				}
 			],
 
