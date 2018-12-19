@@ -72,23 +72,41 @@ class MarkdownField extends Component {
 						editor.codemirror.doc.replaceSelection(`${ this.props.TrackData.ElapsedTime.toFixed(3) }`);
 					},
 					className: "ft-clock",
-					title: "Current Timestamp"
+					title: "Current Timestamp (Alt-I)"
 				},
 				{
 					name: "mask-start",
 					action: (editor) => console.log(editor),
 					className: "fa fa-hourglass-start",
-					title: "Selection Time Start"
+					title: "Selection Time Start (Alt-U)"
 				},
 				{
 					name: "mask-end",
 					action: (editor) => console.log(editor),
 					className: "fa fa-hourglass-end",
-					title: "Selection Time End"
+					title: "Selection Time End (Alt-O)"
 				}
 			],
 
             placeholder: "Enter a Comment..."
+		});
+		this.SimpleMDE.codemirror.addKeyMap({
+			"Alt-A": (cm) => cm.execCommand("selectAll"),
+			"Alt-U": (cm) => {
+				if(this.props.CommentMask && this.props.CommentMask.MaskStart) {
+					cm.doc.replaceSelection(`${ this.props.CommentMask.MaskStart }`)
+				}
+			},
+			"Alt-I": (cm) => {
+				if(this.props.TrackData && this.props.TrackData.ElapsedTime) {
+					cm.doc.replaceSelection(`${ this.props.TrackData.ElapsedTime.toFixed(3) }`)
+				}
+			},
+			"Alt-O": (cm) => {
+				if(this.props.CommentMask && this.props.CommentMask.MaskEnd) {
+					cm.doc.replaceSelection(`${ this.props.CommentMask.MaskEnd }`)
+				}
+			}
 		});
 		
 		this.SimpleMDE.codemirror.on("change", this.OnTextAreaChange.bind(this));

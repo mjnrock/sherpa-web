@@ -3,7 +3,17 @@ import { connect } from "react-redux";
 
 import { InputField } from "./../../form/InputField";
 
+import EnumCommentMask from "./../enums/CommentMask";
+import CommentMask from "./../actions/CommentMask";
+
 class AudioTimer extends Component {
+	OnMaskStartChange(value) {
+		this.props.OnMaskChange(EnumCommentMask.MASK_START, value);
+	}
+	OnMaskEndChange(value) {
+		this.props.OnMaskChange(EnumCommentMask.MASK_END, value);
+	}
+
 	render() {
 		return (
 			<div className="row mb3 mt3">                        
@@ -19,6 +29,7 @@ class AudioTimer extends Component {
 							resize: "none",
 							boxShadow: "rgba(0, 0, 0, 0.2) 2px 2px 6px -2px"
 						}}
+						SaveValue={ this.OnMaskStartChange.bind(this) }
 					/>
 				</div>
 				<div
@@ -35,6 +46,7 @@ class AudioTimer extends Component {
 							resize: "none",
 							boxShadow: "rgba(0, 0, 0, 0.2) 2px 2px 6px -2px"
 						}}
+						SaveValue={ this.OnMaskEndChange.bind(this) }
 					/>
 				</div>
 			</div>
@@ -42,4 +54,9 @@ class AudioTimer extends Component {
 	}
 }
 
-export default connect()(AudioTimer);
+export default connect(
+	null,
+	(dispatch) => ({
+		OnMaskChange: (type, value) => dispatch(CommentMask.CommentMask(type, value))
+	})
+)(AudioTimer);

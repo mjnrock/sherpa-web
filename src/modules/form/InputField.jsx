@@ -4,25 +4,36 @@ class InputField extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			Value: ""
-		};
+		this.Input = React.createRef();
 	}
 
-	OnChange(e) {		
-		if(this.props.SaveValue) {
-			this.props.SaveValue(e.target.Value);
+	SanitizeNumber(input) {
+		let value = input;
+
+		value = value.replace(/[^0-9.]/g, "").replace(/[.]{2,}/g, ".");
+		let match = value.match(/\d+(.?\d+)?/g);
+		if(match !== null && (match[0].indexOf(".") > -1 && value.indexOf(".") > -1)) {
+			value = match[0];
+		}
+		if(value === ".") {
+			value = "";
 		}
 
-		this.setState({
-			Value: e.target.Value
-		});
+		return value;
+	}
+
+	OnChange(e) {
+		let value = e.currentTarget.value = this.SanitizeNumber(e.currentTarget.value);
+
+		if(this.props.SaveValue) {
+			this.props.SaveValue(value);
+		}
 	}
 
     render() {
 		let inputProps = {};
 		for(let key in this.props) {
-			if(!["icon"].includes(key)) {
+			if(!["icon", "SaveValue"].includes(key)) {
 				inputProps[key] = this.props[key];
 			}
 		}
@@ -33,7 +44,7 @@ class InputField extends Component {
 					{ ...inputProps }
 					className={ this.props.className ? this.props.className : "form-control primary" }
 					onChange={ this.OnChange.bind(this) }
-					value={ this.state.Value }
+					ref={ this.Input }
 				/>
 				{
 					this.props.icon
