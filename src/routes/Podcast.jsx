@@ -10,7 +10,7 @@ class Podcast extends Component {
 	}
 
 	OnKeyUp(e) {
-		if(e.ctrlKey === true) {
+		if(e.ctrlKey === true && e.altKey === true) {
 			if(+e.which === 32)	{		// SPACE
 				if(this.props.TrackCommand === Modules.AudioPlayer.Enum.TrackCommand.PLAY.Name) {
 					if(Modules.AudioPlayer.Utility.Bitwise.Has(this.props.PlayerMask, Modules.AudioPlayer.Enum.PlayState.PLAY.Flag)) {
@@ -45,6 +45,7 @@ class Podcast extends Component {
 								onClick={ () => this.props.OnToggleCommentVisibility(true) }
 							>Add Comment</button>
 						}
+                        <Modules.Chronos.Chronos />
                     </div>
                 </div>
 			</div>
