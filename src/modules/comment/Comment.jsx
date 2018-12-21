@@ -7,7 +7,6 @@ import MarkdownField from "./../form/MarkdownField";
 import Actions from "./actions/package";
 
 class Comment extends Component {
-
 	render() {
 		return (
 			<div>

@@ -6,20 +6,21 @@ import Modules from "./../modules/package";
 class Podcast extends Component {
 	componentDidMount() {
 		window.addEventListener("keyup", this.OnKeyUp.bind(this), false);
+		document.addEventListener("keyup", this.OnKeyUp.bind(this), false);
 		console.log(Modules);
 	}
 
 	OnKeyUp(e) {
 		if(e.ctrlKey === true && e.altKey === true) {
 			if(+e.which === 32)	{		// SPACE
-				if(this.props.TrackCommand === Modules.AudioPlayer.Enum.TrackCommand.PLAY.Name) {
-					if(Modules.AudioPlayer.Utility.Bitwise.Has(this.props.PlayerMask, Modules.AudioPlayer.Enum.PlayState.PLAY.Flag)) {
-						this.props.PlayState(Modules.AudioPlayer.Enum.PlayState.PLAY.Name, ~Modules.AudioPlayer.Enum.PlayState.PLAY.Flag);
-					} else {
-						this.props.ExecuteCommand(Modules.AudioPlayer.Enum.TrackCommand.PLAY.Name);
-						this.props.PlayState(Modules.AudioPlayer.Enum.PlayState.PLAY.Name, Modules.AudioPlayer.Enum.PlayState.PLAY.Flag);
-					}
-				}
+				// if(this.props.TrackCommand === Modules.AudioPlayer.Enum.TrackCommand.PLAY.Name) {
+				// 	if(Modules.AudioPlayer.Utility.Bitwise.Has(this.props.PlayerMask, Modules.AudioPlayer.Enum.PlayState.PLAY.Flag)) {
+				// 		this.props.PlayState(Modules.AudioPlayer.Enum.PlayState.PLAY.Name, ~Modules.AudioPlayer.Enum.PlayState.PLAY.Flag);
+				// 	} else {
+				// 		this.props.ExecuteCommand(Modules.AudioPlayer.Enum.TrackCommand.PLAY.Name);
+				// 		this.props.PlayState(Modules.AudioPlayer.Enum.PlayState.PLAY.Name, Modules.AudioPlayer.Enum.PlayState.PLAY.Flag);
+				// 	}
+				// }
 				//	Show a fading indicator that this was pressed
 			} else if(+e.which === 37)	{		// LEFT ARROW
 				this.props.ExecuteCommand(Modules.AudioPlayer.Enum.TrackCommand.SEEK_BACKWARD.Name);
@@ -33,21 +34,17 @@ class Podcast extends Component {
 
 	render() {
 		return (			
-			<div className="container">
-                <div className="row">
-                    <div className="col-6 offset-sm-3">						
-                        <Modules.AudioPlayer.AudioPlayer Title="Track Title" Filename="synth" />
-						{
-							this.props.IsCommentVisible
-							? <Modules.Comment.Comment />
-							: <button
-								className="btn btn-primary btn-block btn-sm"
-								onClick={ () => this.props.OnToggleCommentVisibility(true) }
-							>Add Comment</button>
-						}
-                        {/* <Modules.Chronos.Chronos /> */}
-                    </div>
-                </div>
+			<div className="container">					
+				<Modules.AudioPlayer.AudioPlayer Title="Track Title" Filename="synth" />
+				{
+					this.props.IsCommentVisible
+					? <Modules.Comment.Comment />
+					: <button
+						className="btn btn-primary btn-block btn-sm"
+						onClick={ () => this.props.OnToggleCommentVisibility(true) }
+					>Add Comment</button>
+				}
+				{/* <Modules.Chronos.Chronos /> */}
 			</div>
 		);
 	}

@@ -12,12 +12,12 @@ export function OnTimeslot(state = {}, action) {
 	}
 
 	if(action && action.week && action.type) {
-		console.log(
-			action,
-			state[action.week][action.type][action.tier],
-			state[action.week][action.type][action.tier] | action.value,
-			state[action.week][action.type][action.tier] & action.value
-		);
+		// console.log(
+		// 	action,
+		// 	state[action.week][action.type][action.tier],
+		// 	state[action.week][action.type][action.tier] | action.value,
+		// 	state[action.week][action.type][action.tier] & action.value
+		// );
 
 		if(action.isAdd) {
 			state[action.week][action.type][action.tier] |= action.value;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import TimeBlock from "./../util/TimeBlock";
 import TimeSlot from "./TimeSlot";
@@ -26,23 +27,30 @@ class TimeRange extends Component {
 	}
 
 	render() {
-		let block = TimeBlock.CreateFromMask(this.props.mask) || false;
+		let block = TimeBlock.CreateFromMask(this.props.Timeslot[this.props.week][this.props.day]) || [];
 
 		return (
 			<div
-				className={ `mt3 row` }
+				className={ `${ this.props.className ? this.props.className : "mt3" }` }
+				style={ this.props.style ? this.props.style : {} }
 				onMouseDown={ this.OnMouseDown.bind(this) }
 				onMouseUp={ this.OnMouseUp.bind(this) }
 			>
-				<div className="col-12">
+				<div
+					className="text-center f4"
+				>{ this.props.day.replace("XCH_", "").charAt(0) }</div>
+				<div>
 					{
 						block
 						? block.map((t, i) => {
 							return (
 								<TimeSlot
 									key={ i }
+									week={ this.props.week }
+									day={ this.props.day }
 									time={ t.Time }
 									value={ t.IsOpen }
+									nolabel={ this.props.nolabel ? true : false }
 
 									ismousedown={ this.state.IsDown }
 								/>
@@ -56,4 +64,8 @@ class TimeRange extends Component {
 	}
 }
 
-export default TimeRange;
+export default connect(
+	(state) => ({
+		Timeslot: state.XCH_Timeslot
+	})
+)(TimeRange);

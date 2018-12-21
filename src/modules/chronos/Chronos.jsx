@@ -11,8 +11,28 @@ class Chronos extends Component {
 
 	render() {
 		return (
-			<div>
-				<Components.TimeRange mask={ this.props.Timeslot[Enums.Timeslot.Weeks.WEEKLY][Enums.Timeslot.Days.MONDAY] } />
+			<div className="row">
+				<Components.TimeRangeLabel
+					className="mt3"
+					style={{
+						width: "12.5%"
+					}}
+				/>
+				{
+					Object.entries(Enums.Timeslot.Days).map((v, i) => {
+						return (
+							<Components.TimeRange
+								key={ i }
+								className="mt3"
+								style={{
+									width: "12.5%"
+								}}
+								week={ Enums.Timeslot.Weeks.WEEKLY }
+								day={ Enums.Timeslot.Days[v[0]] }
+							/>
+						);
+					})
+				}
 			</div>
 		);
 	}
