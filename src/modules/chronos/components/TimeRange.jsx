@@ -3,8 +3,6 @@ import React, { Component } from "react";
 import TimeBlock from "./../util/TimeBlock";
 import TimeSlot from "./TimeSlot";
 
-import TimeMask from "./../util/TimeMask";
-
 class TimeRange extends Component {
 	constructor(props) {
 		super(props);

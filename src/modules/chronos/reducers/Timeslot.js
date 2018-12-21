@@ -1,5 +1,4 @@
 import EnumTimeslot from "../enums/Timeslot";
-import TimeBlock from "./../util/TimeBlock";
 
 export function OnTimeslot(state = {}, action) {
 	if(Object.keys(state).length === 0 && state.constructor === Object) {

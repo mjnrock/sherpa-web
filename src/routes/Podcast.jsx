@@ -45,7 +45,7 @@ class Podcast extends Component {
 								onClick={ () => this.props.OnToggleCommentVisibility(true) }
 							>Add Comment</button>
 						}
-                        <Modules.Chronos.Chronos />
+                        {/* <Modules.Chronos.Chronos /> */}
                     </div>
                 </div>
 			</div>

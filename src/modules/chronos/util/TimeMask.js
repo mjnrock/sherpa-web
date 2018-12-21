@@ -1,6 +1,3 @@
-import EnumTimeslot from "./../enums/Timeslot";
-import TimeBlock from "./TimeBlock";
-
 class TimeMask {
 	constructor() {
 		this.Enum = TimeMask.GetEnum15();
