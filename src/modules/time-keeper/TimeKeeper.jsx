@@ -8,6 +8,7 @@ class TimeKeeper extends Component {
 		return (
 			<div>
 				<Components.NotificationTrack />
+				<Components.Timer />
 			</div>
 		);
 	}

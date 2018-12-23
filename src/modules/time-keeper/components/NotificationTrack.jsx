@@ -7,10 +7,18 @@ class NotificationTrack extends Component {
 	render() {
 		return (
 			<div className="row">
-				<NotificationBar name={ `Matt` } />
-				<NotificationBar name={ `Andrew` } />
-				<NotificationBar name={ `Nick` } />
-				<NotificationBar name={ `PJ` } />
+				<NotificationBar name={ `Matt` }>
+					
+				</NotificationBar>
+				<NotificationBar name={ `Andrew` }>
+					
+				</NotificationBar>
+				<NotificationBar name={ `Nick` }>
+					
+				</NotificationBar>
+				<NotificationBar name={ `PJ` }>
+					
+				</NotificationBar>
 			</div>
 		);
 	}

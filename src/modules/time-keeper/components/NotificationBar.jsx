@@ -18,9 +18,7 @@ class NotificationBar extends Component {
 						}}
 					>{ this.props.name }</span>
 
-					<div>
-						<Notification />
-					</div>
+					<div>{ this.props.children } </div>
 				</div>
 			</div>
 		);

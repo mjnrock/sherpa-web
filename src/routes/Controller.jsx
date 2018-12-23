@@ -7,6 +7,7 @@ class Controller extends Component {
 	render() {
 		return (			
 			<div className="container">					
+				<Modules.TimeKeeper.TimeKeeper />
 				<Modules.TimeKeeper.Components.Controller />
 			</div>
 		);
