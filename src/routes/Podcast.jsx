@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
 import Modules from "./../modules/package";
 
@@ -34,7 +35,13 @@ class Podcast extends Component {
 
 	render() {
 		return (			
-			<div className="container">					
+			<div className="container">			
+				<nav className="navbar">
+					<Link className="navbar-brand" to="/">Home</Link>
+					<Link className="navbar-link" to="/podcast">Podcast</Link>
+					<Link className="navbar-link" to="/v1">V1</Link>
+				</nav>
+
 				<Modules.AudioPlayer.AudioPlayer Title="Track Title" Filename="synth" />
 				{
 					this.props.IsCommentVisible
@@ -44,6 +51,7 @@ class Podcast extends Component {
 						onClick={ () => this.props.OnToggleCommentVisibility(true) }
 					>Add Comment</button>
 				}
+				<Modules.TimeKeeper.TimeKeeper />
 				{/* <Modules.Chronos.Chronos /> */}
 			</div>
 		);
